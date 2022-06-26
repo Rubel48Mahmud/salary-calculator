@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style type="text/css">
+*{margin:0;
+padding:0;
+box-sizing:border-box}
+
+.main{
+width:100%;
+text-align:center;
+padding:40px;
+background:#4fabaa
+
+}
+
+table{margin-left:180px;
+margin-top:30px}
+input[type="text"]{
+
+width:200px;
+height:80px;
+font-weight:bold;
+font-size:30px;
+text-align:center;
+color:#000
+
+
+}
+
+
+input[type="number"]{
+
+width:270px;
+height:90px;
+font-weight:bold;
+font-size:40px;
+text-align:center;
+margin-top:5px;
+outline:none;
+border:4px solid blue;
+}
+
+button{
+width:140px;
+height:70px;
+margin:12px 10px;
+font-weight:bold;
+font-size:28px;
+color:#fff;
+border:2px solid #fff;
+border-radius:5px;
+}
+
+
+#btn{
+background:green;
+
+}
+#btn:active{
+
+background:rgba(0,0,0,0.5);
+text-shadow:1px 1px 1px blue
+
+}
+
+
+
+#btn2{
+background:red
+
+}
+#btn2:active{
+
+background:rgba(0,0,0,0.5);
+text-shadow:1px 1px 1px blue
+
+}
+
+#p{
+
+margin-top:20px;
+font-size:30px;
+color:#fff;
+text-shadow:2px 2px 2px #000
+
+}
+
+h2{
+font-size:70px;
+color:#fff;
+text-shadow:3px 3px 2px #000
+
+
+}
+.tt{width:170px;
+font-size:30px;
+color:#fff;
+font-weight:bold}
+
+
+
+.popup{
+width:400px;
+padding:10px;
+position:absolute;
+top:27%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#fff;
+border-radius:5px;
+box-shadow:2px 2px 5px black;
+visibility:hidden
+
+}
+.popup h1{
+color:red;
+font-size:50px;
+
+}
+#popuptext{
+font-size:20px;
+color:red
+}
+.popup button{
+background:green;
+color:#fff;
+font-weight:bold;
+border-radius:8px;
+font-size:35px;
+margin-top:20px;
+
+}
+.popup button:active{
+
+background:rgba(0,0,0,0.5);
+
+}
+</style>
+</head>
+<body>
+
+<div class="main">
+<h2>Salary Calculator</h2>
+
+<p id="p">Enter Your Salary (Per Month)</p>
+<input type="number" id="salary">
+
+<br><br>
+<button id="btn" onclick="btn()">Convert</button>
+<button id="btn2" onclick="btn2()">Reset</button><br><br>
+
+
+
+
+
+
+
+<table>
+  <tr>
+   <td class="tt">Per Day</td>
+   <td class="tt">:</td>
+   <td><input type="text" id="perday"disabled></td>
+  </tr>
+  
+  <tr>
+   <td class="tt">Per Hour</td>
+   <td class="tt">:</td>
+   <td><input type="text" id="perhour"disabled>
+   </td>
+  </tr>
+
+  <tr>
+   <td class="tt">Per Year</td>
+   <td class="tt">:</td>
+   <td><input type="text" id="peryear"disabled></td>
+  </tr>
+  
+  <tr>
+  <td class="tt">Per Minute</td>
+  <td class="tt">:</td>
+  <td><input type="text" id="perminute" disabled></td>
+  </tr>
+  
+  <tr>
+  <td class="tt">Per Week</td>
+  <td class="tt">:</td>
+  <td><input type="text" id="perweek" disabled></td>
+  </tr>
+  
+  <tr>
+  <td class="tt">Per Second</td>
+  <td class="tt">:</td>
+  <td><input type="text" id="persecond" disabled></td>
+  </tr>
+  
+
+</table>
+
+
+<div class="popup" id="popup">
+
+<h1>Error..!</h1>
+<p id="popuptext">No Parameters.Please Enter A Parameters.</p>
+<button onclick="ok()">Ok</button>
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+
+
+function btn(){
+
+
+
+var salary = document.getElementById("salary").value;
+
+
+if(salary==""){
+
+var popup = document.getElementById("popup");
+
+popup.style.visibility="visible"
+
+
+}
+
+else{
+
+var perday = document.getElementById("perday");
+var perweek = document.getElementById("perweek");
+var peryear = document.getElementById("peryear");
+var perhour = document.getElementById("perhour");
+var perminute = document.getElementById("perminute");
+var persecond = document.getElementById("persecond");
+
+
+perday.value=(salary/30).toFixed(2);
+perweek.value= (perday.value*7).toFixed(2);
+peryear.value= (salary*12).toFixed(2);
+
+
+perhour.value= (perday.value/24).toFixed(2);
+perminute.value= (perhour.value/60).toFixed(2);
+persecond.value = (perminute.value/60).toFixed(2);
+
+}
+
+}
+
+function btn2(){
+var salary = document.getElementById("salary");
+
+if(salary.value==""){
+
+var popup = document.getElementById("popup");
+
+popup.style.visibility="visible"
+
+
+}
+
+else{
+
+salary.value="";
+document.getElementById("perday").value="";
+document.getElementById("perweek").value="";
+document.getElementById("peryear").value="";
+document.getElementById("perhour").value="";
+document.getElementById("perminute").value="";
+document.getElementById("persecond").value="";
+
+
+
+}
+
+
+}
+
+function ok(){
+
+var popup = document.getElementById("popup");
+
+popup.style.visibility="hidden"
+
+
+}
+
+
+
+</script>
+</body>
+</html>
